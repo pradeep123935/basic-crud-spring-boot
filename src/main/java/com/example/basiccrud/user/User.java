@@ -4,23 +4,34 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
-public class User {
+@Entity(name="user_details") 
+public class User {  //user is keyword in h2
 	
+	@Id
+	@GeneratedValue
 	private int id;
+	
 	private String name;
 	
-	@JsonProperty("date-of-birth")
-	private LocalDate dob;
+   @JsonProperty("date-of-birth")
+	private LocalDate dateofbirth;
 	
-	@JsonProperty("mobile-number")
+   @JsonProperty("mobile-number")
 	private String mobileNumber;
+   
+   public User() {
+	   
+   }
 	
 	public User(int id, String name, LocalDate dob, String mobileNumber) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.dob = dob;
+		this.dateofbirth = dob;
 		this.mobileNumber = mobileNumber;
 	}
 
@@ -33,7 +44,7 @@ public class User {
 	}
 
 	public LocalDate getDob() {
-		return dob;
+		return dateofbirth;
 	}
 
 	public String getMobileNumber() {
@@ -49,11 +60,17 @@ public class User {
 	}
 
 	public void setDob(LocalDate dob) {
-		this.dob = dob;
+		this.dateofbirth = dob;
 	}
 
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", dateofbirth=" + dateofbirth + ", mobileNumber=" + mobileNumber
+				+ "]";
 	}
 
 	
